@@ -1,0 +1,94 @@
+CREATE Table users(
+     user_id int not null primary key auto_increment,
+     user_name varchar(100) not null,
+     user_pwd varchar(100) not null);
+
+
+
+CREATE Table buyers(
+	buyer_id int primary key auto_increment,
+	location varchar(100) not null ,
+	price int not null,
+    	name varchar(100) not null,
+    	phone varchar(100) not null,
+  	email varchar(100) not null	
+  );
+
+CREATE Table sellers(
+	seller_id int primary key auto_increment,
+	address varchar(100) not null ,
+	style varchar(100) not null,
+    	price int not null,
+	name varchar(100) not null,
+    	phone varchar(100) not null,
+  	email varchar(100) not null	
+  );
+
+CREATE Table newsletteremails(
+     newsletter_id int not null primary key auto_increment,
+     email varchar(100) not null);
+
+
+CREATE Table Featured(
+	Featured_id int primary key auto_increment,
+	featured_image varchar(100),
+	featured_address varchar(100),
+	featured_available varchar(100)
+  );
+
+INSERT INTO users VALUES (1, 'rosy', 'rosy1234');
+
+Create procedure addbuyer(
+  IN p_location varchar(100), 
+  IN p_price int, 
+  IN p_name varchar(100), 
+  IN p_phone varchar(100), 
+  IN p_email varchar(100))
+
+INSERT INTO Buyers(location, price, name, phone, email) 
+  VALUES(p_location, p_price, p_name, p_phone, p_email) ;
+
+Create procedure GetAllBuyers()
+Select * from buyers order by buyer_id desc;
+
+
+
+
+
+
+Create procedure addseller(
+  IN p_address varchar(100),	 
+  IN p_style varchar(100),
+  IN p_price int,
+  IN p_name varchar(100), 
+  IN p_phone varchar(100), 
+  IN p_email varchar(100))
+
+INSERT INTO sellers(address, style, price, name, phone, email) 
+  VALUES(p_address, p_style, p_price, p_name, p_phone, p_email) ;
+
+
+Create procedure GetAllSellers()
+Select * from sellers order by seller_id desc;
+
+
+Create procedure GetAllNewsletterEmails()
+Select * from newsletteremails order by newsletter_id desc;
+
+
+Create procedure addnewsletteremail(
+   IN p_email varchar(100))
+
+--
+INSERT INTO newsletteremails( email) 
+  VALUES( p_email) ;
+
+
+--
+Create procedure GetAllFeatured()
+Select * from Featured order by Featured_id  desc;
+
+
+
+--
+INSERT INTO Featured VALUES ( '1.jpg', 'XXXXXXXXXXXXXXX', 'AVAILABLE');
